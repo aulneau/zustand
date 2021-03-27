@@ -13,22 +13,22 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.module.js",
+      "module": "./index.module.js",
       "default": "./index.js"
     },
     "./vanilla": {
       "types": "./vanilla.d.ts",
-      "import": "./vanilla.module.js",
+      "module": "./vanilla.module.js",
       "default": "./vanilla.js"
     },
     "./middleware": {
       "types": "./middleware.d.ts",
-      "import": "./middleware.module.js",
+      "module": "./middleware.module.js",
       "default": "./middleware.js"
     },
     "./shallow": {
       "types": "./shallow.d.ts",
-      "import": "./shallow.module.js",
+      "module": "./shallow.module.js",
       "default": "./shallow.js"
     }
   },
