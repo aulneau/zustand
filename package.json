@@ -3,8 +3,8 @@
   "private": true,
   "version": "3.3.3",
   "description": "🐻 Bear necessities for state management in React",
-  "main": "index.js",
-  "module": "index.module.js",
+  "main": "index.cjs.js",
+  "module": "index.js",
   "types": "index.d.ts",
   "files": [
     "**"
@@ -13,23 +13,23 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./index.d.ts",
-      "module": "./index.module.js",
-      "default": "./index.js"
+      "module": "./index.js",
+      "default": "./index.cjs.js"
     },
     "./vanilla": {
       "types": "./vanilla.d.ts",
-      "module": "./vanilla.module.js",
-      "default": "./vanilla.js"
+      "module": "./vanilla.js",
+      "default": "./vanilla.cjs.js"
     },
     "./middleware": {
       "types": "./middleware.d.ts",
-      "module": "./middleware.module.js",
-      "default": "./middleware.js"
+      "module": "./middleware.js",
+      "default": "./middleware.cjs.js"
     },
     "./shallow": {
       "types": "./shallow.d.ts",
-      "module": "./shallow.module.js",
-      "default": "./shallow.js"
+      "module": "./shallow.js",
+      "default": "./shallow.cjs.js"
     }
   },
   "sideEffects": false,

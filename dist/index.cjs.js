@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true })
 
 var _regeneratorRuntime = require('@babel/runtime/regenerator')
 var react = require('react')
+var createImpl = require('./vanilla')
 
 function _interopDefaultLegacy(e) {
   return e && typeof e === 'object' && 'default' in e ? e : { default: e }
@@ -12,89 +13,15 @@ function _interopDefaultLegacy(e) {
 var _regeneratorRuntime__default = /*#__PURE__*/ _interopDefaultLegacy(
   _regeneratorRuntime
 )
-
-function create$1(createState) {
-  var state
-  var listeners = new Set()
-
-  var setState = function setState(partial, replace) {
-    var nextState = typeof partial === 'function' ? partial(state) : partial
-
-    if (nextState !== state) {
-      var previousState = state
-      state = replace ? nextState : Object.assign({}, state, nextState)
-      listeners.forEach(function (listener) {
-        return listener(state, previousState)
-      })
-    }
-  }
-
-  var getState = function getState() {
-    return state
-  }
-
-  var subscribeWithSelector = function subscribeWithSelector(
-    listener,
-    selector,
-    equalityFn
-  ) {
-    if (selector === void 0) {
-      selector = getState
-    }
-
-    if (equalityFn === void 0) {
-      equalityFn = Object.is
-    }
-
-    var currentSlice = selector(state)
-
-    function listenerToAdd() {
-      var nextSlice = selector(state)
-
-      if (!equalityFn(currentSlice, nextSlice)) {
-        var previousSlice = currentSlice
-        listener((currentSlice = nextSlice), previousSlice)
-      }
-    }
-
-    listeners.add(listenerToAdd) // Unsubscribe
-
-    return function () {
-      return listeners.delete(listenerToAdd)
-    }
-  }
-
-  var subscribe = function subscribe(listener, selector, equalityFn) {
-    if (selector || equalityFn) {
-      return subscribeWithSelector(listener, selector, equalityFn)
-    }
-
-    listeners.add(listener) // Unsubscribe
-
-    return function () {
-      return listeners.delete(listener)
-    }
-  }
-
-  var destroy = function destroy() {
-    return listeners.clear()
-  }
-
-  var api = {
-    setState: setState,
-    getState: getState,
-    subscribe: subscribe,
-    destroy: destroy,
-  }
-  state = createState(setState, getState, api)
-  return api
-}
+var createImpl__default = /*#__PURE__*/ _interopDefaultLegacy(createImpl)
 
 var useIsoLayoutEffect =
   typeof window === 'undefined' ? react.useEffect : react.useLayoutEffect
 function create(createState) {
   var api =
-    typeof createState === 'function' ? create$1(createState) : createState
+    typeof createState === 'function'
+      ? createImpl__default['default'](createState)
+      : createState
 
   var useStore = function useStore(selector, equalityFn) {
     if (selector === void 0) {
@@ -105,10 +32,10 @@ function create(createState) {
       equalityFn = Object.is
     }
 
-    var _useReducer = react.useReducer(function (c) {
+    var _ref = react.useReducer(function (c) {
         return c + 1
       }, 0),
-      forceUpdate = _useReducer[1]
+      forceUpdate = _ref[1]
 
     var state = api.getState()
     var stateRef = react.useRef(state)
@@ -209,3 +136,12 @@ function create(createState) {
 }
 
 exports.default = create
+Object.keys(createImpl).forEach(function (k) {
+  if (k !== 'default' && !exports.hasOwnProperty(k))
+    Object.defineProperty(exports, k, {
+      enumerable: true,
+      get: function () {
+        return createImpl[k]
+      },
+    })
+})

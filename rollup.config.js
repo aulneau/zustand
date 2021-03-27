@@ -84,7 +84,7 @@ export default (args) => {
   }
   return [
     createDeclarationConfig('src/index.ts', 'dist'),
-    createCommonJSConfig('src/index.ts', 'dist/index.js'),
-    createESMConfig('src/index.ts', 'dist/index.module.js'),
+    createCommonJSConfig('src/index.ts', 'dist/index.cjs.js'),
+    createESMConfig('src/index.ts', 'dist/index.js'),
   ]
 }

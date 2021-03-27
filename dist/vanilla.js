@@ -2,6 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true })
 
+// types inspired by setState from React, see:
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/6c49e45842358ba59a508e13130791989911430d/types/react/v16/index.d.ts#L489-L495
 function create(createState) {
   var state
   var listeners = new Set()
@@ -10,10 +12,10 @@ function create(createState) {
     var nextState = typeof partial === 'function' ? partial(state) : partial
 
     if (nextState !== state) {
-      var previousState = state
+      var _previousState = state
       state = replace ? nextState : Object.assign({}, state, nextState)
       listeners.forEach(function (listener) {
-        return listener(state, previousState)
+        return listener(state, _previousState)
       })
     }
   }
@@ -41,8 +43,8 @@ function create(createState) {
       var nextSlice = selector(state)
 
       if (!equalityFn(currentSlice, nextSlice)) {
-        var previousSlice = currentSlice
-        listener((currentSlice = nextSlice), previousSlice)
+        var _previousSlice = currentSlice
+        listener((currentSlice = nextSlice), _previousSlice)
       }
     }
 

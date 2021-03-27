@@ -9,6 +9,29 @@
   "files": [
     "**"
   ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./index.d.ts",
+      "module": "./index.js",
+      "default": "./index.cjs.js"
+    },
+    "./vanilla": {
+      "types": "./vanilla.d.ts",
+      "module": "./vanilla.js",
+      "default": "./vanilla.cjs.js"
+    },
+    "./middleware": {
+      "types": "./middleware.d.ts",
+      "module": "./middleware.js",
+      "default": "./middleware.cjs.js"
+    },
+    "./shallow": {
+      "types": "./shallow.d.ts",
+      "module": "./shallow.js",
+      "default": "./shallow.cjs.js"
+    }
+  },
   "sideEffects": false,
   "repository": {
     "type": "git",

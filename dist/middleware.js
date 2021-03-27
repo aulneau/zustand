@@ -238,8 +238,8 @@ var persist = function persist(config, options) {
 
     api.setState = function (state, replace) {
       savedSetState(state, replace)
-      setItem()
-    }
+      void setItem()
+    } // rehydrate initial state with existing stored state
 
     _asyncToGenerator__default['default'](
       /*#__PURE__*/ _regeneratorRuntime__default['default'].mark(
@@ -341,7 +341,7 @@ var persist = function persist(config, options) {
     return config(
       function () {
         set.apply(void 0, arguments)
-        setItem()
+        void setItem()
       },
       get,
       api
